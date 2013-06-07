@@ -1,3 +1,4 @@
+(function(window, undefined) {
 var WebSocketMultiplex = (function(){
 
 
@@ -84,3 +85,15 @@ var WebSocketMultiplex = (function(){
 
     return WebSocketMultiplex;
 })();
+
+if (typeof module === 'object' && typeof module.exports === 'object') {
+    module.exports = WebSocketMultiplex;
+} else {
+    window.WebSocketMultiplex = WebSocketMultiplex;
+    if (typeof window.define === 'function' && window.define.amd) {
+        window.define('websocket-multiplex', [], function() {
+            return WebSocketMultiplex;
+        });
+    }
+}
+})(this);
